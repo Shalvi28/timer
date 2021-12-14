@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body{
+            background-color: burlywood;
+        }
+        div{
+            height: 50vh;
+            width: 20vw;
+            color:bisque;
+            background-color:brown;
+            margin: 100px 500px;
+            padding-top: 10px;
+        }
+        #timer_op{
+            width: 10vw;
+            height: 10vh;
+            background-color: cornsilk;
+            font-weight: bolder;
+            color: crimson;
+            font-size: 50px;
+            margin-left: 68px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        button{
+            color:black;
+            background-color: beige;
+            height: 8vh;
+            width: 5vw;
+        }
+        #pause_timer{
+            margin-left: 50px;
+        }
+        #resume_timer,#restart_timer {
+            margin-left: 20px;
+        }
+        #reset_timer{
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+       
+
+    </style>
+</head>
+<body>
+    <div>
+    <p id="timer_op">0</p>
+    <button id="pause_timer">Pause</button>
+    <button id="resume_timer">Start</button>
+    <br />
+    <button id="reset_timer">Reset</button>
+    <button id="restart_timer">Restart</button>
+    <script>
+        let counter = 0;
+let setInterval_id = null;
+
+let timer_callback = function() {
+    counter++;
+    document.getElementById('timer_op').innerText = counter;
+}
+
+let pause_timer_btn = document.getElementById('pause_timer');
+pause_timer_btn.addEventListener('click', function() {
+    clearInterval(setInterval_id);
+});
+
+let resume_timer_btn = document.getElementById('resume_timer');
+resume_timer_btn.addEventListener('click', function() {
+    setInterval_id = setInterval(timer_callback, 1000);
+    this.innerText = "Resume";
+});
+
+let reset_timer_btn = document.getElementById('reset_timer');
+reset_timer_btn.addEventListener('click', function() {
+    clearInterval(setInterval_id);
+    counter = 0;
+    document.getElementById('timer_op').innerText = counter;
+});
+
+let restart_timer_btn = document.getElementById('restart_timer');
+restart_timer_btn.addEventListener('click', function() {
+    counter = 0;
+    document.getElementById('timer_op').innerText = counter;
+});
+    </script>
+</div>
+</body>
+</html>
